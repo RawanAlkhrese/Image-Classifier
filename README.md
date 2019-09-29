@@ -1,7 +1,7 @@
 # Image Classifier 
 ## Prerequisites
 - **Python versions 3.0+**
-- **Numpy:** to do some calculation on the dataset.
+- **Numpy:** to do some calculations on the dataset.
 - **Json:** to open and load jason files. 
 - **Matplotlib:** to visulize the data.
 - **Seaborn:** to visulize the data.
