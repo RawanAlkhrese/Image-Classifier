@@ -20,5 +20,7 @@ We'll train an image classifier to recognize different species of flowers. We ca
  pair of Python scripts that run from the command line:
  - **train.py:** train a new network on a dataset and save the model as a checkpoint. 
  - **predict.py:** uses a trained network to predict the class for an input image.
+ ##### Other Files:
+ - **cat_to_name.json:** used for mapping from category label to category name.
  --------------
  *This project is a part of Udacity's Data Science Nanodegree*
