@@ -11,11 +11,12 @@ Going forward, AI algorithms will be incorporated into more and more everyday ap
 We'll train an image classifier to recognize different species of flowers. We can imagine using something like this in a phone app that tells us the name of the flower the camera is looking at. In practice we'd train this classifier, then export it for use in application. here I built command line application using this model.
  ## About the Data:
  The model trained in [this dataset](http://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html) which contains 102 flower categories.
+  ## Files Descriptions:
  *Image-Classifier folder:*
- ##### Notebook files: 
+ ##### Notebook Files: 
  - **Image Classifier Project.ipynb:** contains the code of the prject. 
  - **Image Classifier Project.html:**  the HTML version of the code file.
- ##### command line application: 
+ ##### Command Line Application: 
  pair of Python scripts that run from the command line:
  - **train.py:** train a new network on a dataset and save the model as a checkpoint. 
  - **predict.py:** uses a trained network to predict the class for an input image.
