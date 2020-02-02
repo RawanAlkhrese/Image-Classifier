@@ -13151,9 +13151,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">&#182;</a></h2><p>Here you'll use <code>torchvision</code> to load the data (<a href="http://pytorch.org/docs/0.3.0/torchvision/index.html">documentation</a>). The dataset is split into three parts, training, validation, and testing. For the training, we'll want to apply transformations such as random scaling, cropping, and flipping. This will help the network generalize leading to better performance. We'll also need to make sure the input data is resized to 224x224 pixels as required by the pre-trained networks.</p>
-<p>The validation and testing sets are used to measure the model's performance on data it hasn't seen yet. For this we don't want any scaling or rotation transformations, but we'll need to resize then crop the images to the appropriate size.</p>
-<p>The pre-trained networks we'll use were trained on the ImageNet dataset where each color channel was normalized separately. For all three sets we'll need to normalize the means and standard deviations of the images to what the network expects. For the means, it's <code>[0.485, 0.456, 0.406]</code> and for the standard deviations <code>[0.229, 0.224, 0.225]</code>, calculated from the ImageNet images.  These values will shift each color channel to be centered at 0 and range from -1 to 1.</p>
+<h2 id="Load-the-data">Load the data<a class="anchor-link" href="#Load-the-data">&#182;</a></h2><p>Here I'll use <code>torchvision</code> to load the data (<a href="http://pytorch.org/docs/0.3.0/torchvision/index.html">documentation</a>). The dataset is split into three parts, training, validation, and testing. For the training, I'll want to apply transformations such as random scaling, cropping, and flipping. This will help the network generalize leading to better performance. I'll also need to make sure the input data is resized to 224x224 pixels as required by the pre-trained networks.</p>
+<p>The validation and testing sets are used to measure the model's performance on data it hasn't seen yet. For this I don't want any scaling or rotation transformations, but I'll need to resize then crop the images to the appropriate size.</p>
+<p>The pre-trained networks I'll use were trained on the ImageNet dataset where each color channel was normalized separately. For all three sets I'll need to normalize the means and standard deviations of the images to what the network expects. For the means, it's <code>[0.485, 0.456, 0.406]</code> and for the standard deviations <code>[0.229, 0.224, 0.225]</code>, calculated from the ImageNet images.  These values will shift each color channel to be centered at 0 and range from -1 to 1.</p>
 
 </div>
 </div>
@@ -13179,7 +13179,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Define your transforms for the training, validation, and testing sets</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Define your transforms for the training, validation, and testing sets</span>
 <span class="n">train_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">RandomRotation</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span>
                                        <span class="n">transforms</span><span class="o">.</span><span class="n">RandomResizedCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
                                        <span class="n">transforms</span><span class="o">.</span><span class="n">RandomHorizontalFlip</span><span class="p">(),</span>
@@ -13198,12 +13198,12 @@ div#notebook {
                                       <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">([</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
                                                            <span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">])])</span>
 
-<span class="c1"># TODO: Load the datasets with ImageFolder</span>
+<span class="c1">#Load the datasets with ImageFolder</span>
 <span class="n">train_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">train_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">train_transforms</span><span class="p">)</span>
 <span class="n">valid_data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">valid_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">valid_transforms</span><span class="p">)</span>
 <span class="n">test_data</span> <span class="o">=</span>  <span class="n">datasets</span><span class="o">.</span><span class="n">ImageFolder</span><span class="p">(</span><span class="n">test_dir</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">test_transforms</span><span class="p">)</span>
 
-<span class="c1"># TODO: Using the image datasets and the trainforms, define the dataloaders</span>
+<span class="c1">#Using the image datasets and the trainforms, define the dataloaders</span>
 <span class="n">trainloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">validloader</span><span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
 <span class="n">testloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
@@ -13217,7 +13217,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Label-mapping">Label mapping<a class="anchor-link" href="#Label-mapping">&#182;</a></h3><p>we'll also need to load in a mapping from category label to category name. We can find this in the file <code>cat_to_name.json</code>. It's a JSON object which we can read in with the <a href="https://docs.python.org/2/library/json.html"><code>json</code> module</a>. This will give us a dictionary mapping the integer encoded categories to the actual names of the flowers.</p>
+<h3 id="Label-mapping">Label mapping<a class="anchor-link" href="#Label-mapping">&#182;</a></h3><p>I'll also need to load in a mapping from category label to category name. We can find this in the file <code>cat_to_name.json</code>. It's a JSON object which we can read in with the <a href="https://docs.python.org/2/library/json.html"><code>json</code> module</a>. This will give us a dictionary mapping the integer encoded categories to the actual names of the flowers.</p>
 
 </div>
 </div>
@@ -13239,8 +13239,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Building-and-training-the-classifier">Building and training the classifier<a class="anchor-link" href="#Building-and-training-the-classifier">&#182;</a></h1><p>Now that the data is ready, it's time to build and train the classifier. We will use one of the pretrained models from <code>torchvision.models</code> to get the image features. We will build and train a new feed-forward classifier using those features.</p>
-<p>The goal here we want the validation accuracy to be above 70%</p>
+<h1 id="Building-and-training-the-classifier">Building and training the classifier<a class="anchor-link" href="#Building-and-training-the-classifier">&#182;</a></h1><p>Now that the data is ready, it's time to build and train the classifier. I will use one of the pretrained models from <code>torchvision.models</code> to get the image features. I will build and train a new feed-forward classifier using those features.</p>
+<p>My goal here we want the validation accuracy to be above 70%</p>
 
 </div>
 </div>
@@ -13250,7 +13250,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Build and train your network</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Build and train your network</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">vgg19</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># freeze model parameters </span>
 <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">():</span>
@@ -13659,7 +13659,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Testing-your-network">Testing your network<a class="anchor-link" href="#Testing-your-network">&#182;</a></h2><p>It's good practice to test the trained network on test data, images the network has never seen either in training or validation. This will give us a good estimate for the model's performance on completely new images. We should be able to reach around 70% accuracy on the test set if the model has been trained well.</p>
+<h2 id="Testing-your-network">Testing your network<a class="anchor-link" href="#Testing-your-network">&#182;</a></h2><p>It's good practice to test the trained network on test data, images the network has never seen either in training or validation. This will give us a good estimate for the model's performance on completely new images. I should be able to reach around 70% accuracy on the test set if the model has been trained well.</p>
 
 </div>
 </div>
@@ -13669,7 +13669,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Do validation on the test set</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#validation on the test set</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
@@ -13715,7 +13715,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Save-the-checkpoint">Save the checkpoint<a class="anchor-link" href="#Save-the-checkpoint">&#182;</a></h2><p>Now that our network is trained, we will save the model so we can load it later for making predictions. We also need to save other things such as the mapping of classes to indices which we get from one of the image datasets.</p>
+<h2 id="Save-the-checkpoint">Save the checkpoint<a class="anchor-link" href="#Save-the-checkpoint">&#182;</a></h2><p>Now that our network is trained, I will save the model so I can load it later for making predictions. I also need to save other things such as the mapping of classes to indices which we get from one of the image datasets.</p>
 
 </div>
 </div>
@@ -13725,7 +13725,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Save the checkpoint </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Save the checkpoint </span>
 <span class="n">checkpoint</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;classifier&#39;</span><span class="p">:</span><span class="n">classifier</span><span class="p">,</span>
               <span class="s1">&#39;state_dict&#39;</span><span class="p">:</span><span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
               <span class="s1">&#39;class_to_idx&#39;</span><span class="p">:</span><span class="n">train_data</span><span class="o">.</span><span class="n">class_to_idx</span><span class="p">,</span>
@@ -13754,7 +13754,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Write a function that loads a checkpoint and rebuilds the model</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Wfunction loads a checkpoint and rebuilds the model</span>
 
 <span class="k">def</span> <span class="nf">loading_checkpoint</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
@@ -13874,8 +13874,8 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Inference-for-classification">Inference for classification<a class="anchor-link" href="#Inference-for-classification">&#182;</a></h1><p>First you'll need to handle processing the input image such that it can be used in your network.</p>
-<h2 id="Image-Preprocessing">Image Preprocessing<a class="anchor-link" href="#Image-Preprocessing">&#182;</a></h2><p>We'll use <code>PIL</code> to load the image (<a href="https://pillow.readthedocs.io/en/latest/reference/Image.html">documentation</a>). It's best to write a function that preprocesses the image so it can be used as input for the model. This function should process the images in the same manner used for training.</p>
+<h1 id="Inference-for-classification">Inference for classification<a class="anchor-link" href="#Inference-for-classification">&#182;</a></h1><p>First I'll need to handle processing the input image such that it can be used in your network.</p>
+<h2 id="Image-Preprocessing">Image Preprocessing<a class="anchor-link" href="#Image-Preprocessing">&#182;</a></h2><p>I'll use <code>PIL</code> to load the image (<a href="https://pillow.readthedocs.io/en/latest/reference/Image.html">documentation</a>). It's best to write a function that preprocesses the image so it can be used as input for the model. This function should process the images in the same manner used for training.</p>
 <p>PyTorch expects the color channel to be the first dimension but it's the third dimension in the PIL image and Numpy array. We can reorder dimensions using <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.ndarray.transpose.html"><code>ndarray.transpose</code></a>. The color channel needs to be first and retain the order of the other two dimensions.</p>
 
 </div>
@@ -13891,7 +13891,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <span class="sd">        returns an Numpy array</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
-    <span class="c1"># TODO: Process a PIL image for use in a PyTorch model </span>
+    <span class="c1"># Process a PIL image for use in a PyTorch model </span>
     <span class="n">img_transforms</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
                                        <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
                                        <span class="n">transforms</span><span class="o">.</span><span class="n">RandomHorizontalFlip</span><span class="p">(),</span>
@@ -13965,7 +13965,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
     <span class="sd">&#39;&#39;&#39; Predict the class (or classes) of an image using a trained deep learning model.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
-    <span class="c1"># TODO: Implement the code to predict the class from an image file</span>
+    <span class="c1"># Implement the code to predict the class from an image file</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
         <span class="c1">#move to cpu</span>
         <span class="n">model</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
@@ -13995,9 +13995,9 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Sanity-Checking">Sanity Checking<a class="anchor-link" href="#Sanity-Checking">&#182;</a></h2><p>Now that we can use a trained model for predictions, check to make sure it makes sense. Even if the testing accuracy is high, it's always good to check that there aren't obvious bugs. We will use <code>matplotlib</code> to plot the probabilities for the top 5 classes as a bar graph, along with the input image. It should look like this:</p>
+<h2 id="Sanity-Checking">Sanity Checking<a class="anchor-link" href="#Sanity-Checking">&#182;</a></h2><p>Now that I can use a trained model for predictions. Even if the testing accuracy is high, it's always good to check that there aren't obvious bugs. I will use <code>matplotlib</code> to plot the probabilities for the top 5 classes as a bar graph, along with the input image. It should look like this:</p>
 <p><img src='assets/inference_example.png' width=300px></p>
-<p>To show a PyTorch tensor as an image, we will use the <code>imshow</code> function defined above.</p>
+<p>To show a PyTorch tensor as an image, I will use the <code>imshow</code> function defined above.</p>
 
 </div>
 </div>
@@ -14007,7 +14007,7 @@ Epoch 10/10.. Train loss: 0.480.. Valid loss: 0.331.. Valid accuracy: 0.899
 <div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Display an image along with the top 5 classes</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Display an image along with the top 5 classes</span>
 
 <span class="k">def</span> <span class="nf">display_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">model</span><span class="p">):</span>
     

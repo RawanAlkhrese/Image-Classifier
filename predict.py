@@ -35,7 +35,7 @@ def process_image(image):
     ''' Scales, crops, and normalizes a PIL image for a PyTorch model,
         returns an Numpy array
     '''
-    # TODO: Process a PIL image for use in a PyTorch model 
+    #Process a PIL image for use in a PyTorch model 
     img_transforms = transforms.Compose([transforms.Resize(256),
                                        transforms.CenterCrop(224),
                                        transforms.RandomHorizontalFlip(),
@@ -49,7 +49,7 @@ def predict(image_path, model, top_k):
     ''' Predict the class (or classes) of an image using a trained deep learning model.
     '''
     
-    # TODO: Implement the code to predict the class from an image file
+    #Implement the code to predict the class from an image file
     with torch.no_grad():
         #move to cpu
         if args.gpu:
